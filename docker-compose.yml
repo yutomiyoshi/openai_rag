@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - OPEN_AI_API_KEY=${OPEN_AI_API_KEY}
