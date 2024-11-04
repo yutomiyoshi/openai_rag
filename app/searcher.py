@@ -23,7 +23,7 @@ class CosineNearestNeighborsFinder(NearestNeighborsFinder):
         # openAI embeddingのベクトルを対象にする場合は正規化されているため、np.dot(vec1, vec2) だけでも良い
         return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
 
-    def find_nearest(self, vector: list[float], topk: int = 1) -> list[dict]:
+    def find_nearest(self, vector: list[float], topk: int = 3) -> list[dict]:
         similarities = [
             (idx, self._cosine_similarity(vector, item["vector"]))
             for idx, item in enumerate(self.data)

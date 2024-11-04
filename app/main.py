@@ -15,10 +15,10 @@ def main():
     embedder = OpenAIEmbedder(api_key)
     searcher = CosineNearestNeighborsFinder("sample_data.json")
 
-    user_query: str = "アートを教えられる先生を探しています"
+    user_query: str = "うんめいのとうをクリアしやすいポケモンを教えてください。"
 
     user_query_vector: list[float] = embedder.embed([user_query])[0]
-    search_results: list[dict] = searcher.find_nearest(user_query_vector, topk=2)
+    search_results: list[dict] = searcher.find_nearest(user_query_vector, topk=5)
     chat_bot = GPTBasedChatBot()
     response: str = chat_bot.generate_response(
         user_query, [search_result["text"] for search_result in search_results]
